@@ -260,7 +260,7 @@
           "named": true
         },
         {
-          "type": "identifier",
+          "type": "nular_expression",
           "named": true
         },
         {
@@ -281,6 +281,21 @@
         },
         {
           "type": "unary_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "nular_expression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
           "named": true
         }
       ]

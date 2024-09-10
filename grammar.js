@@ -36,10 +36,10 @@ module.exports = grammar({
       choice(
         $.statement_block,
         $.assignment_expression,
-        $.binary_expression,
+        $.nular_expression,
         $.unary_expression,
+        $.binary_expression,
         $.parenthesized_expression,
-        $.identifier,
         $.number,
         $.string,
         $.array,
@@ -50,11 +50,7 @@ module.exports = grammar({
     number: ($) => /[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/,
     string: ($) =>
       choice(seq("'", $.string_content, "'"), seq('"', $.string_content, '"')),
-    string_content: (_) =>
-      choice(
-        token.immediate(prec(1, /[^"\\\n]+/)),
-        prec(2, token.immediate(seq("\\", /[^abefnrtv'\"\\\?0]/))),
-      ),
+    string_content: (_) => token(prec(-1, /(?:[^"\\]|\\.)*/)),
     array: ($) => seq("[", commaSep(optional($.expression)), "]"),
 
     assignment_expression: ($) =>
@@ -66,6 +62,8 @@ module.exports = grammar({
           field("right", $.expression),
         ),
       ),
+
+    nular_expression: ($) => prec(PREC.NULAR, $.identifier),
 
     unary_expression: ($) =>
       prec.left(
