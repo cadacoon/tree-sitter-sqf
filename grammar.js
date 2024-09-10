@@ -50,7 +50,11 @@ module.exports = grammar({
     number: ($) => /[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?/,
     string: ($) =>
       choice(seq("'", $.string_content, "'"), seq('"', $.string_content, '"')),
-    string_content: (_) => token(prec(-1, /([^"`$\\\r\n]|\\(.|\r?\n))+/)),
+    string_content: (_) =>
+      choice(
+        token.immediate(prec(1, /[^"\\\n]+/)),
+        prec(2, token.immediate(seq("\\", /[^abefnrtv'\"\\\?0]/))),
+      ),
     array: ($) => seq("[", commaSep(optional($.expression)), "]"),
 
     assignment_expression: ($) =>
