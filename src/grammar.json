@@ -731,8 +731,13 @@
                 "type": "FIELD",
                 "name": "operator",
                 "content": {
-                  "type": "STRING",
-                  "value": "else"
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "STRING",
+                    "value": "else"
+                  },
+                  "named": true,
+                  "value": "identifier"
                 }
               },
               {

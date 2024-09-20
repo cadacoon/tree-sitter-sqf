@@ -164,10 +164,6 @@
             "named": false
           },
           {
-            "type": "else",
-            "named": false
-          },
-          {
             "type": "identifier",
             "named": true
           },
@@ -985,10 +981,6 @@
   {
     "type": "comment",
     "named": true
-  },
-  {
-    "type": "else",
-    "named": false
   },
   {
     "type": "identifier",

@@ -87,7 +87,7 @@ module.exports = grammar({
         ["<=", PREC.RELATIONAL],
         ["<", PREC.RELATIONAL],
         [$.identifier, PREC.BINARY],
-        ["else", PREC.ELSE],
+        [alias("else", $.identifier), PREC.ELSE],
         ["+", PREC.ADD],
         ["-", PREC.ADD],
         ["min", PREC.ADD],
